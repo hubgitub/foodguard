@@ -1,0 +1,82 @@
+{
+  "app": {
+    "title": "🛡️ FoodGuard",
+    "subtitle": "Product Recall Checker"
+  },
+  "scanner": {
+    "button": "Scan Barcode",
+    "close": "Close",
+    "requesting_permission": "Requesting camera permission...",
+    "no_access": "No camera access"
+  },
+  "search": {
+    "or": "OR",
+    "title": "Search Product",
+    "placeholder": "Product name or brand...",
+    "button": "Search",
+    "results_title": "Search Results",
+    "results_count": "{{count}} recall(s) found",
+    "new_search": "New Search",
+    "back": "← Back"
+  },
+  "recall": {
+    "status": {
+      "recalled": "⚠️ PRODUCT RECALLED",
+      "safe": "✅ PRODUCT SAFE"
+    },
+    "details_title": "Recall Details",
+    "date": "Recall Date",
+    "reason": "Recall Reason",
+    "risks": "Risks",
+    "actions": "What to Do",
+    "batch_numbers": "Batch Numbers",
+    "distributors": "Distributors",
+    "view_image": "View Product Image",
+    "brand": "Brand",
+    "barcode": "Barcode",
+    "product_name": "Product",
+    "no_recalls": "This product does not appear in the official recall list.",
+    "last_checked": "Last checked",
+    "close": "Close"
+  },
+  "nutrition": {
+    "nutriscore": "Nutri-Score",
+    "vegan": "Vegan"
+  },
+  "info": {
+    "title": "How It Works?",
+    "steps": "1. Scan your product's barcode\n2. Or search by name/brand\n3. Instantly check official recalls\n4. Official government data",
+    "clear_cache": "Clear Cache"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "country": "Country",
+    "save": "Save",
+    "cancel": "Cancel",
+    "about": "About",
+    "close": "Close"
+  },
+  "about": {
+    "version": "Version",
+    "copyright": "Copyright",
+    "build_date": "Build Date",
+    "description": "Description",
+    "app_description": "FoodGuard helps you check product recalls from official government sources to ensure food safety."
+  },
+  "countries": {
+    "UK": "United Kingdom",
+    "FR": "France",
+    "IT": "Italy",
+    "ES": "Spain"
+  },
+  "errors": {
+    "check_failed": "Unable to check product. Please try again.",
+    "search_failed": "Unable to search. Please try again.",
+    "empty_search": "Please enter a search term",
+    "loading": "Checking..."
+  },
+  "messages": {
+    "cache_cleared": "Cache cleared successfully"
+  }
+}

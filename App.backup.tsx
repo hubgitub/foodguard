@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, Alert, SafeAreaView, StatusBar } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import * as SplashScreen from 'expo-splash-screen';
 import './src/i18n'; // Initialize i18n
 import BarcodeScanner from './src/components/BarcodeScanner';
 import RecallResult from './src/components/RecallResult';
@@ -9,9 +8,6 @@ import Settings from './src/components/Settings';
 import { MultiCountryRecallService } from './src/services/multiCountryRecallApi';
 import { RecallCheckResult, RecallInfo } from './src/types/recall';
 import { getSelectedCountry } from './src/i18n';
-
-// Keep the splash screen visible while we fetch resources
-SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const { t, i18n } = useTranslation();
@@ -23,38 +19,12 @@ export default function App() {
   const [showResults, setShowResults] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [currentCountry, setCurrentCountry] = useState('FR');
-  const [appIsReady, setAppIsReady] = useState(false);
 
   const recallService = MultiCountryRecallService.getInstance();
 
   useEffect(() => {
-    async function prepare() {
-      try {
-        // Load country preference and any other initial data
-        await loadCountryPreference();
-        // Artificially delay for splash screen visibility (optional)
-        await new Promise(resolve => setTimeout(resolve, 1000));
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        // Tell the app to render
-        setAppIsReady(true);
-      }
-    }
-
-    prepare();
+    loadCountryPreference();
   }, []);
-
-  const onLayoutRootView = useCallback(async () => {
-    if (appIsReady) {
-      // This tells the splash screen to hide immediately
-      await SplashScreen.hideAsync();
-    }
-  }, [appIsReady]);
-
-  if (!appIsReady) {
-    return null;
-  }
 
   const loadCountryPreference = async () => {
     const country = await getSelectedCountry();
@@ -113,12 +83,13 @@ export default function App() {
   };
 
   const clearCache = async () => {
+    const recallService = RecallService.getInstance();
     await recallService.clearCache();
     Alert.alert(t('messages.cache_cleared'), '');
   };
 
   return (
-    <SafeAreaView style={styles.container} onLayout={onLayoutRootView}>
+    <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
       {isScanning ? (
         <BarcodeScanner

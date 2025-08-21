@@ -12,13 +12,21 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~5.0.4",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "axios": "^1.11.0",
     "expo": "~53.0.20",
+    "expo-camera": "~16.1.11",
     "expo-status-bar": "~2.2.3",
+    "i18next": "^25.4.0",
     "react": "19.0.0",
+    "react-dom": "^19.0.0",
+    "react-i18next": "^15.7.1",
     "react-native": "0.79.5",
-    "expo-camera": "~16.1.11"
+    "react-native-localize": "^3.5.2",
+    "react-native-web": "^0.21.1",
+    "scheduler": "^0.26.0",
+    "expo-splash-screen": "~0.30.10"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

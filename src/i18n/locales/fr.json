@@ -1,0 +1,82 @@
+{
+  "app": {
+    "title": "🛡️ FoodGuard",
+    "subtitle": "Vérificateur de rappels produits"
+  },
+  "scanner": {
+    "button": "Scanner un code-barres",
+    "close": "Fermer",
+    "requesting_permission": "Demande d'autorisation pour la caméra...",
+    "no_access": "Pas d'accès à la caméra"
+  },
+  "search": {
+    "or": "OU",
+    "title": "Rechercher un produit",
+    "placeholder": "Nom du produit ou marque...",
+    "button": "Rechercher",
+    "results_title": "Résultats de recherche",
+    "results_count": "{{count}} rappel(s) trouvé(s)",
+    "new_search": "Nouvelle recherche",
+    "back": "← Retour"
+  },
+  "recall": {
+    "status": {
+      "recalled": "⚠️ PRODUIT RAPPELÉ",
+      "safe": "✅ PRODUIT SÉCURISÉ"
+    },
+    "details_title": "Détails du rappel",
+    "date": "Date du rappel",
+    "reason": "Motif du rappel",
+    "risks": "Risques",
+    "actions": "Que faire",
+    "batch_numbers": "Numéros de lot",
+    "distributors": "Distributeurs",
+    "view_image": "Voir l'image du produit",
+    "brand": "Marque",
+    "barcode": "Code-barres",
+    "product_name": "Produit",
+    "no_recalls": "Ce produit n'apparaît pas dans la liste officielle des rappels.",
+    "last_checked": "Dernière vérification",
+    "close": "Fermer"
+  },
+  "nutrition": {
+    "nutriscore": "Nutri-Score",
+    "vegan": "Végétalien"
+  },
+  "info": {
+    "title": "Comment ça marche?",
+    "steps": "1. Scannez le code-barres de votre produit\n2. Ou recherchez par nom/marque\n3. Consultez instantanément les rappels officiels\n4. Données gouvernementales officielles",
+    "clear_cache": "Vider le cache"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "country": "Pays",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "about": "À propos",
+    "close": "Fermer"
+  },
+  "about": {
+    "version": "Version",
+    "copyright": "Droits d'auteur",
+    "build_date": "Date de compilation",
+    "description": "Description",
+    "app_description": "FoodGuard vous aide à vérifier les rappels de produits à partir de sources gouvernementales officielles pour assurer la sécurité alimentaire."
+  },
+  "countries": {
+    "UK": "Royaume-Uni",
+    "FR": "France",
+    "IT": "Italie",
+    "ES": "Espagne"
+  },
+  "errors": {
+    "check_failed": "Impossible de vérifier le produit. Veuillez réessayer.",
+    "search_failed": "Impossible d'effectuer la recherche. Veuillez réessayer.",
+    "empty_search": "Veuillez entrer un terme de recherche",
+    "loading": "Vérification en cours..."
+  },
+  "messages": {
+    "cache_cleared": "Cache vidé avec succès"
+  }
+}

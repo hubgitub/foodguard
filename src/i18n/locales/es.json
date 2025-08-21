@@ -1,0 +1,82 @@
+{
+  "app": {
+    "title": "🛡️ FoodGuard",
+    "subtitle": "Verificador de retiradas de productos"
+  },
+  "scanner": {
+    "button": "Escanear código de barras",
+    "close": "Cerrar",
+    "requesting_permission": "Solicitando permiso de cámara...",
+    "no_access": "Sin acceso a la cámara"
+  },
+  "search": {
+    "or": "O",
+    "title": "Buscar producto",
+    "placeholder": "Nombre del producto o marca...",
+    "button": "Buscar",
+    "results_title": "Resultados de búsqueda",
+    "results_count": "{{count}} retirada(s) encontrada(s)",
+    "new_search": "Nueva búsqueda",
+    "back": "← Atrás"
+  },
+  "recall": {
+    "status": {
+      "recalled": "⚠️ PRODUCTO RETIRADO",
+      "safe": "✅ PRODUCTO SEGURO"
+    },
+    "details_title": "Detalles de retirada",
+    "date": "Fecha de retirada",
+    "reason": "Motivo de retirada",
+    "risks": "Riesgos",
+    "actions": "Qué hacer",
+    "batch_numbers": "Números de lote",
+    "distributors": "Distribuidores",
+    "view_image": "Ver imagen del producto",
+    "brand": "Marca",
+    "barcode": "Código de barras",
+    "product_name": "Producto",
+    "no_recalls": "Este producto no aparece en la lista oficial de retiradas.",
+    "last_checked": "Última verificación",
+    "close": "Cerrar"
+  },
+  "nutrition": {
+    "nutriscore": "Nutri-Score",
+    "vegan": "Vegano"
+  },
+  "info": {
+    "title": "¿Cómo funciona?",
+    "steps": "1. Escanea el código de barras del producto\n2. O busca por nombre/marca\n3. Consulta instantáneamente las retiradas oficiales\n4. Datos gubernamentales oficiales",
+    "clear_cache": "Limpiar caché"
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "country": "País",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "about": "Acerca de",
+    "close": "Cerrar"
+  },
+  "about": {
+    "version": "Versión",
+    "copyright": "Derechos de autor",
+    "build_date": "Fecha de compilación",
+    "description": "Descripción",
+    "app_description": "FoodGuard te ayuda a verificar las retiradas de productos de fuentes gubernamentales oficiales para garantizar la seguridad alimentaria."
+  },
+  "countries": {
+    "UK": "Reino Unido",
+    "FR": "Francia",
+    "IT": "Italia",
+    "ES": "España"
+  },
+  "errors": {
+    "check_failed": "No se pudo verificar el producto. Inténtalo de nuevo.",
+    "search_failed": "No se pudo realizar la búsqueda. Inténtalo de nuevo.",
+    "empty_search": "Por favor, introduce un término de búsqueda",
+    "loading": "Verificando..."
+  },
+  "messages": {
+    "cache_cleared": "Caché limpiado con éxito"
+  }
+}

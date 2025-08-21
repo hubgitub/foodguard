@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image, Platform } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { RecallCheckResult } from '../types/recall';
 
 interface RecallResultProps {
@@ -8,6 +9,7 @@ interface RecallResultProps {
 }
 
 export default function RecallResult({ result, onClose }: RecallResultProps) {
+  const { t, i18n } = useTranslation();
   if (!result) return null;
 
   const openLink = (url: string) => {
@@ -21,64 +23,64 @@ export default function RecallResult({ result, onClose }: RecallResultProps) {
       <View style={styles.header}>
         <View style={[styles.statusBadge, result.isRecalled ? styles.danger : styles.safe]}>
           <Text style={styles.statusText}>
-            {result.isRecalled ? '⚠️ PRODUIT RAPPELÉ' : '✅ PRODUIT SÉCURISÉ'}
+            {result.isRecalled ? t('recall.status.recalled') : t('recall.status.safe')}
           </Text>
         </View>
       </View>
 
       {result.isRecalled && result.recalls.length > 0 && (
         <View style={styles.recallsContainer}>
-          <Text style={styles.sectionTitle}>Détails du rappel</Text>
+          <Text style={styles.sectionTitle}>{t('recall.details_title')}</Text>
           {result.recalls.map((recall, index) => (
             <View key={recall.id || index} style={styles.recallCard}>
               <Text style={styles.productName}>{recall.productName}</Text>
-              {recall.brand && <Text style={styles.brand}>Marque: {recall.brand}</Text>}
+              {recall.brand && <Text style={styles.brand}>{t('recall.brand')}: {recall.brand}</Text>}
               
               <View style={styles.infoRow}>
-                <Text style={styles.label}>Date du rappel:</Text>
+                <Text style={styles.label}>{t('recall.date')}:</Text>
                 <Text style={styles.value}>
-                  {new Date(recall.recallDate).toLocaleDateString('fr-FR')}
+                  {new Date(recall.recallDate).toLocaleDateString(i18n.language === 'en' ? 'en-GB' : i18n.language === 'it' ? 'it-IT' : i18n.language === 'es' ? 'es-ES' : 'fr-FR')}
                 </Text>
               </View>
 
               {recall.reason && (
                 <View style={styles.section}>
-                  <Text style={styles.sectionSubtitle}>Motif du rappel:</Text>
+                  <Text style={styles.sectionSubtitle}>{t('recall.reason')}:</Text>
                   <Text style={styles.text}>{recall.reason}</Text>
                 </View>
               )}
 
               {recall.risk && (
                 <View style={styles.section}>
-                  <Text style={styles.sectionSubtitle}>Risques:</Text>
+                  <Text style={styles.sectionSubtitle}>{t('recall.risks')}:</Text>
                   <Text style={styles.dangerText}>{recall.risk}</Text>
                 </View>
               )}
 
               {recall.actions && (
                 <View style={styles.section}>
-                  <Text style={styles.sectionSubtitle}>Que faire:</Text>
+                  <Text style={styles.sectionSubtitle}>{t('recall.actions')}:</Text>
                   <Text style={styles.actionText}>{recall.actions}</Text>
                 </View>
               )}
 
               {recall.batchNumbers && recall.batchNumbers.length > 0 && (
                 <View style={styles.section}>
-                  <Text style={styles.sectionSubtitle}>Numéros de lot:</Text>
+                  <Text style={styles.sectionSubtitle}>{t('recall.batch_numbers')}:</Text>
                   <Text style={styles.text}>{recall.batchNumbers.join(', ')}</Text>
                 </View>
               )}
 
               {recall.distributors && recall.distributors.length > 0 && (
                 <View style={styles.section}>
-                  <Text style={styles.sectionSubtitle}>Distributeurs:</Text>
+                  <Text style={styles.sectionSubtitle}>{t('recall.distributors')}:</Text>
                   <Text style={styles.text}>{recall.distributors.join(', ')}</Text>
                 </View>
               )}
 
               {recall.imageUrl && (
                 <TouchableOpacity onPress={() => openLink(recall.imageUrl!)}>
-                  <Text style={styles.link}>Voir l'image du produit</Text>
+                  <Text style={styles.link}>{t('recall.view_image')}</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -99,38 +101,38 @@ export default function RecallResult({ result, onClose }: RecallResultProps) {
               )}
               <Text style={styles.productName}>{result.product.name}</Text>
               {result.product.brand && (
-                <Text style={styles.brand}>Marque: {result.product.brand}</Text>
+                <Text style={styles.brand}>{t('recall.brand')}: {result.product.brand}</Text>
               )}
               <View style={styles.nutritionInfo}>
                 {result.product.nutriScore && (
                   <View style={[styles.nutriScoreBadge, styles[`nutriScore${result.product.nutriScore}`]]}>
-                    <Text style={styles.nutriScoreText}>Nutri-Score</Text>
+                    <Text style={styles.nutriScoreText}>{t('nutrition.nutriscore')}</Text>
                     <Text style={styles.nutriScoreGrade}>{result.product.nutriScore}</Text>
                   </View>
                 )}
                 {result.product.isVegan && (
                   <View style={styles.veganBadge}>
                     <Text style={styles.veganIcon}>🌿</Text>
-                    <Text style={styles.veganText}>Végétalien</Text>
+                    <Text style={styles.veganText}>{t('nutrition.vegan')}</Text>
                   </View>
                 )}
               </View>
               {result.product.barcode && (
-                <Text style={styles.barcode}>Code-barres: {result.product.barcode}</Text>
+                <Text style={styles.barcode}>{t('recall.barcode')}: {result.product.barcode}</Text>
               )}
             </View>
           )}
           <Text style={styles.safeMessage}>
-            Ce produit n'apparaît pas dans la liste des rappels du gouvernement français.
+            {t('recall.no_recalls')}
           </Text>
           <Text style={styles.disclaimer}>
-            Dernière vérification: {new Date(result.lastChecked).toLocaleString('fr-FR')}
+            {t('recall.last_checked')}: {new Date(result.lastChecked).toLocaleString(i18n.language === 'en' ? 'en-GB' : i18n.language === 'it' ? 'it-IT' : i18n.language === 'es' ? 'es-ES' : 'fr-FR')}
           </Text>
         </View>
       )}
 
       <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-        <Text style={styles.closeButtonText}>Fermer</Text>
+        <Text style={styles.closeButtonText}>{t('recall.close')}</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -175,11 +177,18 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginBottom: 15,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    ...Platform.select({
+      web: {
+        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+      },
+      default: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+      },
+    }),
   },
   productName: {
     fontSize: 18,

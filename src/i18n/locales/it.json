@@ -1,0 +1,82 @@
+{
+  "app": {
+    "title": "🛡️ FoodGuard",
+    "subtitle": "Controllore richiami prodotti"
+  },
+  "scanner": {
+    "button": "Scansiona codice a barre",
+    "close": "Chiudi",
+    "requesting_permission": "Richiesta permesso fotocamera...",
+    "no_access": "Nessun accesso alla fotocamera"
+  },
+  "search": {
+    "or": "O",
+    "title": "Cerca prodotto",
+    "placeholder": "Nome prodotto o marca...",
+    "button": "Cerca",
+    "results_title": "Risultati ricerca",
+    "results_count": "{{count}} richiamo/i trovato/i",
+    "new_search": "Nuova ricerca",
+    "back": "← Indietro"
+  },
+  "recall": {
+    "status": {
+      "recalled": "⚠️ PRODOTTO RICHIAMATO",
+      "safe": "✅ PRODOTTO SICURO"
+    },
+    "details_title": "Dettagli richiamo",
+    "date": "Data richiamo",
+    "reason": "Motivo del richiamo",
+    "risks": "Rischi",
+    "actions": "Cosa fare",
+    "batch_numbers": "Numeri di lotto",
+    "distributors": "Distributori",
+    "view_image": "Vedi immagine prodotto",
+    "brand": "Marca",
+    "barcode": "Codice a barre",
+    "product_name": "Prodotto",
+    "no_recalls": "Questo prodotto non compare nell'elenco ufficiale dei richiami.",
+    "last_checked": "Ultimo controllo",
+    "close": "Chiudi"
+  },
+  "nutrition": {
+    "nutriscore": "Nutri-Score",
+    "vegan": "Vegano"
+  },
+  "info": {
+    "title": "Come funziona?",
+    "steps": "1. Scansiona il codice a barre del prodotto\n2. O cerca per nome/marca\n3. Controlla istantaneamente i richiami ufficiali\n4. Dati governativi ufficiali",
+    "clear_cache": "Svuota cache"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "language": "Lingua",
+    "country": "Paese",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "about": "Informazioni",
+    "close": "Chiudi"
+  },
+  "about": {
+    "version": "Versione",
+    "copyright": "Copyright",
+    "build_date": "Data di compilazione",
+    "description": "Descrizione",
+    "app_description": "FoodGuard ti aiuta a controllare i richiami di prodotti da fonti governative ufficiali per garantire la sicurezza alimentare."
+  },
+  "countries": {
+    "UK": "Regno Unito",
+    "FR": "Francia",
+    "IT": "Italia",
+    "ES": "Spagna"
+  },
+  "errors": {
+    "check_failed": "Impossibile controllare il prodotto. Riprova.",
+    "search_failed": "Impossibile effettuare la ricerca. Riprova.",
+    "empty_search": "Inserisci un termine di ricerca",
+    "loading": "Controllo in corso..."
+  },
+  "messages": {
+    "cache_cleared": "Cache svuotata con successo"
+  }
+}

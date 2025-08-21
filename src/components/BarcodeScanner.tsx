@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
+import { useTranslation } from 'react-i18next';
 
 interface BarcodeScannerProps {
   onScan: (barcode: string) => void;
@@ -9,6 +10,7 @@ interface BarcodeScannerProps {
 }
 
 export default function BarcodeScanner({ onScan, isScanning, onClose }: BarcodeScannerProps) {
+  const { t } = useTranslation();
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
 
@@ -34,10 +36,10 @@ export default function BarcodeScanner({ onScan, isScanning, onClose }: BarcodeS
   }
 
   if (!permission) {
-    return <Text>Demande d'autorisation pour la caméra...</Text>;
+    return <Text>{t('scanner.requesting_permission')}</Text>;
   }
   if (!permission.granted) {
-    return <Text>Pas d'accès à la caméra</Text>;
+    return <Text>{t('scanner.no_access')}</Text>;
   }
 
   return (
@@ -53,7 +55,7 @@ export default function BarcodeScanner({ onScan, isScanning, onClose }: BarcodeS
         <View style={styles.scanArea} />
       </View>
       <View style={styles.bottomBar}>
-        <Button title="Fermer" onPress={onClose} color="#fff" />
+        <Button title={t('scanner.close')} onPress={onClose} color="#fff" />
       </View>
     </View>
   );
