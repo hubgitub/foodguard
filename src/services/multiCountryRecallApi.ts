@@ -77,7 +77,7 @@ export class MultiCountryRecallService {
 
       return result;
     } catch (error) {
-      console.error('Error fetching recall data:', error);
+      // Silent error - handled by returning empty result
       throw new Error('Failed to check recall status');
     }
   }
@@ -142,7 +142,7 @@ export class MultiCountryRecallService {
         imageUrl: record.fields.liens_vers_les_images,
       }));
     } catch (error) {
-      console.error('Error fetching French recalls:', error);
+      // Silent error - handled by returning empty array
       return [];
     }
   }
@@ -172,7 +172,7 @@ export class MultiCountryRecallService {
         imageUrl: record.fields.liens_vers_les_images,
       }));
     } catch (error) {
-      console.error('Error searching French recalls:', error);
+      // Silent error - handled by returning empty array
       return [];
     }
   }
@@ -211,7 +211,7 @@ export class MultiCountryRecallService {
       // Return empty if JSON fails
       return [];
     } catch (error) {
-      console.error('Error fetching UK recalls from JSON:', error);
+      // Silent error - handled by returning empty array
       // Return empty on error
       return [];
     }
@@ -247,7 +247,7 @@ export class MultiCountryRecallService {
       }
       return [];
     } catch (error) {
-      console.error('Error searching UK recalls:', error);
+      // Silent error - handled by returning empty array
       return [];
     }
   }
@@ -256,13 +256,13 @@ export class MultiCountryRecallService {
   private async fetchItalianRecalls(barcode: string): Promise<RecallInfo[]> {
     // Currently no direct JSON API available for Italian recalls
     // Return empty array - users can check the official website
-    console.log('Italian recalls: Direct API not available, please check official website');
+    // Italian recalls: Direct API not available
     return [];
   }
 
   private async searchItalianRecalls(query: string): Promise<RecallInfo[]> {
     // Currently no direct JSON API available for Italian recalls
-    console.log('Italian recalls: Direct API not available, please check official website');
+    // Italian recalls: Direct API not available
     return [];
   }
 
@@ -270,13 +270,13 @@ export class MultiCountryRecallService {
   private async fetchSpanishRecalls(barcode: string): Promise<RecallInfo[]> {
     // Currently no direct JSON API available for Spanish recalls
     // Return empty array - users can check the official website
-    console.log('Spanish recalls: Direct API not available, please check official website');
+    // Spanish recalls: Direct API not available
     return [];
   }
 
   private async searchSpanishRecalls(query: string): Promise<RecallInfo[]> {
     // Currently no direct JSON API available for Spanish recalls
-    console.log('Spanish recalls: Direct API not available, please check official website');
+    // Spanish recalls: Direct API not available
     return [];
   }
 
@@ -315,7 +315,7 @@ export class MultiCountryRecallService {
         };
       }
     } catch (error) {
-      console.error('Error fetching product info from Open Food Facts:', error);
+      // Silent error - handled by returning null
     }
 
     return {
@@ -340,7 +340,7 @@ export class MultiCountryRecallService {
         }
       }
     } catch (error) {
-      console.error('Cache read error:', error);
+      // Cache read error - will fetch fresh data
     }
     return null;
   }
@@ -349,7 +349,7 @@ export class MultiCountryRecallService {
     try {
       await AsyncStorage.setItem(`${CACHE_KEY}_${country}_${barcode}`, JSON.stringify(result));
     } catch (error) {
-      console.error('Cache write error:', error);
+      // Cache write error - non-critical
     }
   }
 
@@ -359,7 +359,7 @@ export class MultiCountryRecallService {
       const cacheKeys = keys.filter(key => key.startsWith(CACHE_KEY));
       await AsyncStorage.multiRemove(cacheKeys);
     } catch (error) {
-      console.error('Clear cache error:', error);
+      // Clear cache error - non-critical
     }
   }
 }

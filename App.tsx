@@ -9,6 +9,7 @@ import Settings from './src/components/Settings';
 import { MultiCountryRecallService } from './src/services/multiCountryRecallApi';
 import { RecallCheckResult, RecallInfo } from './src/types/recall';
 import { getSelectedCountry } from './src/i18n';
+import { validateBarcode, validateSearchQuery } from './src/utils/validation';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -73,9 +74,17 @@ export default function App() {
 
   const handleBarcodeScan = async (barcode: string) => {
     setIsScanning(false);
+    
+    // Validate barcode input
+    const validBarcode = validateBarcode(barcode);
+    if (!validBarcode) {
+      Alert.alert(t('errors.invalid_barcode', 'Invalid barcode format'), '');
+      return;
+    }
+    
     setIsLoading(true);
     try {
-      const result = await recallService.searchByBarcode(barcode);
+      const result = await recallService.searchByBarcode(validBarcode);
       setScanResult(result);
       setShowResults(true);
       setSearchResults([]);
@@ -87,14 +96,16 @@ export default function App() {
   };
 
   const handleTextSearch = async () => {
-    if (!searchQuery.trim()) {
+    // Validate and sanitize search query
+    const validQuery = validateSearchQuery(searchQuery);
+    if (!validQuery) {
       Alert.alert(t('errors.empty_search'), '');
       return;
     }
 
     setIsLoading(true);
     try {
-      const results = await recallService.searchByText(searchQuery);
+      const results = await recallService.searchByText(validQuery);
       setSearchResults(results);
       setScanResult(null);
       setShowResults(true);

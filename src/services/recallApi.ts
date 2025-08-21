@@ -1,6 +1,7 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RecallInfo, Product, RecallCheckResult } from '../types/recall';
+import { safeJsonParse, sanitizeApiResponse } from '../utils/validation';
 
 const RAPPEL_CONSO_API = 'https://data.economie.gouv.fr/api/records/1.0/search/';
 const OPEN_FOOD_FACTS_API = 'https://world.openfoodfacts.org/api/v0/product/';
@@ -74,7 +75,7 @@ export class RecallService {
 
       return result;
     } catch (error) {
-      console.error('Error fetching recall data:', error);
+      // Silent error - handled by returning empty result
       throw new Error('Failed to check recall status');
     }
   }
@@ -104,7 +105,7 @@ export class RecallService {
         imageUrl: record.fields.liens_vers_les_images,
       }));
     } catch (error) {
-      console.error('Error searching recalls:', error);
+      // Silent error - handled by returning empty array
       throw new Error('Failed to search recalls');
     }
   }
@@ -113,15 +114,17 @@ export class RecallService {
     try {
       const cached = await AsyncStorage.getItem(`${CACHE_KEY}_${barcode}`);
       if (cached) {
-        const data = JSON.parse(cached);
-        const cacheTime = new Date(data.lastChecked).getTime();
-        // Invalidate cache if it's old or doesn't have product field
-        if (Date.now() - cacheTime < CACHE_DURATION && data.product) {
-          return data;
+        const data = safeJsonParse(cached, null);
+        if (data && data.lastChecked) {
+          const cacheTime = new Date(data.lastChecked).getTime();
+          // Invalidate cache if it's old or doesn't have product field
+          if (Date.now() - cacheTime < CACHE_DURATION && data.product) {
+            return data;
+          }
         }
       }
     } catch (error) {
-      console.error('Cache read error:', error);
+      // Cache read error - will fetch fresh data
     }
     return null;
   }
@@ -130,7 +133,7 @@ export class RecallService {
     try {
       await AsyncStorage.setItem(`${CACHE_KEY}_${barcode}`, JSON.stringify(result));
     } catch (error) {
-      console.error('Cache write error:', error);
+      // Cache write error - non-critical
     }
   }
 
@@ -140,7 +143,7 @@ export class RecallService {
       const cacheKeys = keys.filter(key => key.startsWith(CACHE_KEY));
       await AsyncStorage.multiRemove(cacheKeys);
     } catch (error) {
-      console.error('Clear cache error:', error);
+      // Clear cache error - non-critical
     }
   }
 
@@ -167,7 +170,7 @@ export class RecallService {
         };
       }
     } catch (error) {
-      console.error('Error fetching product info from Open Food Facts:', error);
+      // Silent error - handled by returning null
     }
 
     // If Open Food Facts fails or returns no product, return basic info
