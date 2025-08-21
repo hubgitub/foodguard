@@ -1,29 +1,47 @@
 {
   "expo": {
-    "name": "foodguard-app",
-    "slug": "foodguard-app",
+    "name": "FoodGuard",
+    "slug": "foodguard",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "scheme": "foodguard",
+    "privacy": "public",
+    "description": "Vérificateur de rappels de produits alimentaires - Scannez ou recherchez vos produits pour vérifier s'ils font l'objet d'un rappel officiel du gouvernement français.",
+    "primaryColor": "#007bff",
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#007bff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourcompany.foodguard",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "FoodGuard utilise votre caméra pour scanner les codes-barres des produits alimentaires.",
+        "CFBundleDisplayName": "FoodGuard"
+      }
     },
     "android": {
+      "package": "com.yourcompany.foodguard",
+      "versionCode": 1,
+      "permissions": ["CAMERA"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#007bff"
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
     }
   }
 }
